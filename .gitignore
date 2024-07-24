@@ -1,1 +1,4 @@
 .env
+.volumes/
+
+app/__pycache__/

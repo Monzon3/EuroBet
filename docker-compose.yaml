@@ -1,21 +1,26 @@
 services:
-  app:
+  api:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: euro_app
-    tty: true
+    container_name: api_euroCup
+    restart: always
+    volumes:
+      - ./app:/app
     environment:
       - MYSQL_DATABASE=${MYSQL_DB}
       - MYSQL_USER=${SQL_ADMIN_USERNAME}
       - MYSQL_PASSWORD=${SQL_ADMIN_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
-    links: 
+    command: uvicorn api:app --reload --host 0.0.0.0 --port 8000
+    ports:
+      - "3000:8000"
+    links:
       - db
       
   db:
     restart: always
-    container_name: mysql_euroBet
+    container_name: mysql_euroCup
     image: mysql
     ports: 
       - '3311:3306'
@@ -25,4 +30,4 @@ services:
       - MYSQL_PASSWORD=${SQL_ADMIN_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
     volumes:
-      - ../.volumes/.mysql:/var/lib/mysql
+      - .volumes/.mysql:/var/lib/mysql
