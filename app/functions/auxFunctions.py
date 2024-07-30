@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-from database import engine
+#from database import engine
 import json
 from models import bets_table, games_table, teams_table, users_table
 from sqlalchemy import insert, select

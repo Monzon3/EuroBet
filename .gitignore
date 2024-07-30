@@ -1,5 +1,4 @@
 .env
 .volumes/
 
-app/__pycache__/
-functions/__pycache__/
+__pycache__/
