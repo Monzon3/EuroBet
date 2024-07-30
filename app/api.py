@@ -2,6 +2,7 @@ from functions.dbConnector import conn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models import *
+from routes.generate import gen
 #from routes.games import gms
 #from routes.other import oth
 #from routes.users import usr
@@ -26,6 +27,7 @@ app.add_middleware(
 )
 
 # Include routes
+app.include_router(gen)
 #app.include_router(gms)
 #app.include_router(oth)
 #app.include_router(flm)
