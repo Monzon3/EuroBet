@@ -1,4 +1,4 @@
-from functions.database import conn
+from functions.dbConnector import conn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models import *

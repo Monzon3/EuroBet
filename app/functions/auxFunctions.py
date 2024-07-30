@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-#from database import engine
+from functions.dbConnector import engine
 import json
 from models import bets_table, games_table, teams_table, users_table
 from sqlalchemy import insert, select
@@ -38,6 +38,7 @@ def import_teams_to_db():
         query = insert(teams_table).values(name=i)
         with engine.begin() as conn:
             conn.execute(query)
+
 
 def import_bets_to_db(username:str):
     # Load all bets for a specific user

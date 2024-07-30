@@ -1,4 +1,4 @@
-from functions.database import engine, meta
+from functions.dbConnector import engine, meta
 from sqlalchemy import ForeignKey, Column, Table
 from sqlalchemy.sql.sqltypes import Integer, String
 
