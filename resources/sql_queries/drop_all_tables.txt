@@ -1,0 +1,5 @@
+DROP TABLE Bets;
+DROP TABLE Games;
+DROP TABLE UsersPoints;
+DROP TABLE Users;
+DROP TABLE Teams;

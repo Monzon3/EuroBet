@@ -1,26 +1,98 @@
 {
-    "France": 1,
-    "Belgium": 2,
-    "England": 3,
-    "Portugal": 4,
-    "Netherlands": 5,
-    "Spain": 6,
-    "Italy": 7,
-    "Croatia": 8,
-    "Germany": 9,
-    "Switzerland": 10,
-    "Denmark": 11,
-    "Ukraine": 12,
-    "Austria": 13,
-    "Hungary": 14,
-    "Poland": 15,
-    "Serbia": 16,
-    "Czechia": 17,
-    "Scotland": 18,
-    "Turkey": 19,
-    "Romania": 20,
-    "Slovakia": 21,
-    "Slovenia": 22,
-    "Albania": 23,
-    "Georgia": 24 
+    "1": {
+        "name": "France",
+        "group": "D"
+    },
+    "2": {
+        "name": "Belgium",
+        "group": "E"
+    },
+    "3": {
+        "name": "England",
+        "group": "C"
+    },
+    "4": {
+        "name": "Portugal",
+        "group": "F"
+    },
+    "5": {
+        "name": "Netherlands",
+        "group": "D"
+    },
+    "6": {
+        "name": "Spain",
+        "group": "B"
+    },
+    "7": {
+        "name": "Italy",
+        "group": "B"
+    },
+    "8": {
+        "name": "Croatia",
+        "group": "B"
+    },
+    "9": {
+        "name": "Germany",
+        "group": "A"
+    },
+    "10": {
+        "name": "Switzerland",
+        "group": "A"
+    },
+    "11": {
+        "name": "Denmark",
+        "group": "C"
+    },
+    "12": {
+        "name": "Ukraine",
+        "group": "E"
+    },
+    "13": {
+        "name": "Austria",
+        "group": "D"
+    },
+    "14": {
+        "name": "Hungary",
+        "group": "A"
+    },
+    "15": {
+        "name": "Poland",
+        "group": "D"
+    },
+    "16": {
+        "name": "Serbia",
+        "group": "C"
+    },
+    "17": {
+        "name": "Czechia",
+        "group": "F"
+    },
+    "18": {
+        "name": "Scotland",
+        "group": "A"
+    },
+    "19": {
+        "name": "Turkey",
+        "group": "F"
+    },
+    "20": {
+        "name": "Romania",
+        "group": "E"
+    },
+    "21": {
+        "name": "Slovakia",
+        "group": "E"
+    },
+    "22": {
+        "name": "Slovenia",
+        "group": "C"
+    },
+    "23": {
+        "name": "Albania",
+        "group": "B"
+    },
+    "24": {
+        "name": "Georgia",
+        "group": "F"
+    }
 }

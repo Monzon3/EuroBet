@@ -1,0 +1,9 @@
+{
+    "teams": ["England", "Spain", "Germany", "Denmark", "Turkey", "Czechia"],
+    "more_goals_for": "Portugal", 
+    "less_goals_for": "Albania",
+    "more_goals_against": "Albania",
+    "less_goals_against": "Belgium",
+    "winner": "Spain",
+    "more_goals_total": "Portugal"
+}

@@ -1,4 +1,5 @@
 .env
 .volumes/
+files2024/
 
 __pycache__/
