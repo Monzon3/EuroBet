@@ -1,51 +1,53 @@
 from functions.dbConnector import engine
 from models import bets_table, games_table, teams_table, users_table
-from sqlalchemy import insert, select, update
+from sqlalchemy import insert, select, update, bindparam
 
-def import_games_to_db(games:dict):
-    for i in games.keys():
-        team1ID = select(teams_table.c.id).where(teams_table.c.name==games[i]['team1'])
-        team2ID = select(teams_table.c.id).where(teams_table.c.name==games[i]['team2'])
-        values = {"date": games[i]['date'],
-                  "team1ID": team1ID, "team2ID": team2ID,
-                  "goals1": 0, "goals2": 0}
+def import_games_to_db(games:list[dict]):
+    for game in games:
+        scalar1 = (select(teams_table.c.id)\
+                   .where(teams_table.c.name==bindparam("team1")).scalar_subquery())
+        scalar2 = (select(teams_table.c.id)\
+                   .where(teams_table.c.name==bindparam("team2")).scalar_subquery())
 
-        query = insert(games_table).values(values)
+        values_to_db = {"id": game['id'],
+                        "team1": game['team1'],
+                        "team2": game['team2'],
+                        "date": game['date'],
+                        "goals1": 0, "goals2": 0}  
 
         with engine.begin() as conn:
-            conn.execute(query)
+            conn.execute(insert(games_table)\
+                         .values(team1ID=scalar1, team2ID=scalar2), values_to_db)
 
 
 def import_teams_to_db(ranking:dict):
     for i in ranking.keys():
-        values = {"id": i, 
-                  "name": ranking[i]['name'],
-                  "group": ranking[i]['group'],
-                  "played": 0, 
-                  "won": 0, 
-                  "drawn": 0, 
-                  "lost": 0,
-                  "goals_for": 0, 
-                  "goals_against": 0}
-        
-        query = insert(teams_table).values(values)
+        values_to_db = {"id": i, 
+                        "name": ranking[i]['name'],
+                        "group": ranking[i]['group'],
+                        "played": 0, 
+                        "won": 0, 
+                        "drawn": 0, 
+                        "lost": 0,
+                        "goals_for": 0, 
+                        "goals_against": 0}
 
         with engine.begin() as conn:
-            conn.execute(query)
+            conn.execute(insert(teams_table), values_to_db)
 
 
-def import_bets_games_to_db(username:str, bets: dict):    
-    for i in bets.keys():
-        userID = select(users_table.c.id).where(users_table.c.name==username)
-        values = {"userID": userID,
-                  "gameID": i,
-                  "goals1": bets[i]['goals1'],
-                  "goals2": bets[i]['goals2']}
-        
-        query = insert(bets_table).values(values)
+def import_bets_games_to_db(username:str, bets:list[dict]):    
+    for bet in bets:
+        userID = select(users_table.c.id)\
+                 .where(users_table.c.name==bindparam("username")).scalar_subquery()
+
+        values_to_db = {"username": username,
+                        "gameID": bet['id'],
+                        "goals1": bet['goals1'],
+                        "goals2": bet['goals2']}
 
         with engine.begin() as conn:
-            conn.execute(query)
+            conn.execute(insert(bets_table).values(userID=userID), values_to_db)
 
 def import_bets_teams_to_db(username: str, bets: dict):
     userID = select(users_table.c.id).where(users_table.c.name==username)
@@ -62,7 +64,8 @@ def import_bets_teams_to_db(username: str, bets: dict):
     winner = select(teams_table.c.id).where(teams_table.c.name==bets['winner'])
     more_goals3 = select(teams_table.c.id).where(teams_table.c.name==bets['more_goals_total'])
     
-    values = {"team1ID": team1ID,
+    values_to_db = {
+              "team1ID": team1ID,
               "team2ID": team2ID,
               "team3ID": team3ID,
               "team4ID": team4ID,
@@ -75,7 +78,7 @@ def import_bets_teams_to_db(username: str, bets: dict):
               "winner": winner,
               "more_goals_total": more_goals3}
     
-    query = update(users_table).where(users_table.c.id==1).values(values)
+    query = update(users_table).where(users_table.c.id==1).values(values_to_db)
                     
     with engine.begin() as conn:
         conn.execute(query) 
