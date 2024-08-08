@@ -1,6 +1,6 @@
 from functions.dbConnector import engine
-from models import bets_table, games_table, teams_table, users_table
-from sqlalchemy import insert, select, update
+from tables import games_table, teams_table
+from sqlalchemy import select, update
 
 def import_results_to_db(games:list[dict]):
     for game in games:
