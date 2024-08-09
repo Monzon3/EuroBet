@@ -1,30 +1,31 @@
 from functions.dbConnector import engine
+from models.models import betGame, gameData, team
 from tables import bets_table, games_table, teams_table, users_table
 from sqlalchemy import insert, select, update, bindparam
 
-def import_games_to_db(games:list[dict]):
+def import_games_to_db(games:list[gameData]):
     for game in games:
-        scalar1 = (select(teams_table.c.id)\
+        team1ID = (select(teams_table.c.id)\
                    .where(teams_table.c.name==bindparam("team1")).scalar_subquery())
-        scalar2 = (select(teams_table.c.id)\
+        team2ID = (select(teams_table.c.id)\
                    .where(teams_table.c.name==bindparam("team2")).scalar_subquery())
 
-        values_to_db = {"id": game['id'],
-                        "team1": game['team1'],
-                        "team2": game['team2'],
-                        "date": game['date'],
-                        "goals1": 0, "goals2": 0}  
+        values_to_db = {"id": game.id,
+                        "team1": game.team1,
+                        "team2": game.team2,
+                        "date": game.date,
+                        "goals1": 0, "goals2": 0}
 
         with engine.begin() as conn:
             conn.execute(insert(games_table)\
-                         .values(team1ID=scalar1, team2ID=scalar2), values_to_db)
+                         .values(team1ID=team1ID, team2ID=team2ID), values_to_db)
 
 
-def import_teams_to_db(ranking:dict):
-    for i in ranking.keys():
-        values_to_db = {"id": i, 
-                        "name": ranking[i]['name'],
-                        "group": ranking[i]['group'],
+def import_teams_to_db(teams:list[team]):
+    for team in teams:
+        values_to_db = {"id": team.id, 
+                        "name": team.name,
+                        "group": team.group,
                         "played": 0, 
                         "won": 0, 
                         "drawn": 0, 
@@ -36,15 +37,15 @@ def import_teams_to_db(ranking:dict):
             conn.execute(insert(teams_table), values_to_db)
 
 
-def import_bets_games_to_db(username:str, bets:list[dict]):    
+def import_bets_games_to_db(username:str, bets:list[betGame]):    
     for bet in bets:
         userID = select(users_table.c.id)\
                  .where(users_table.c.name==bindparam("username")).scalar_subquery()
 
         values_to_db = {"username": username,
-                        "gameID": bet['id'],
-                        "goals1": bet['goals1'],
-                        "goals2": bet['goals2']}
+                        "gameID": bet.id,
+                        "goals1": bet.goals1,
+                        "goals2": bet.goals2}
 
         with engine.begin() as conn:
             conn.execute(insert(bets_table).values(userID=userID), values_to_db)

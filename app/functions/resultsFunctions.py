@@ -1,12 +1,31 @@
 from functions.dbConnector import engine
+from models.models import gameResult
+import pandas as pd
 from tables import games_table, teams_table
 from sqlalchemy import select, update
 
-def import_results_to_db(games:list[dict]):
+def get_group_table_from_db(group: str):
+    query = select(teams_table.c['name', 'played', 
+                                 'won', 'drawn', 'lost', 
+                                 'goals_for', 'goals_against'])\
+            .where(teams_table.c.group==group)
+
+    with engine.begin():
+        teams = pd.read_sql(query, con=engine)
+
+    teams['goal_difference'] = teams['goals_for'] - teams['goals_against']
+    teams['points'] = teams['won']*3 + teams['drawn']*1
+    
+    order_by = ['points', 'goals_for', 'goal_difference']
+    teams = teams.sort_values(by=order_by, ascending=[False, False, True])
+
+    return teams.to_dict('records')
+
+def import_results_to_db(games:list[gameResult]):
     for game in games:
-        gameID = game['id']
-        goals1 = game['goals1']
-        goals2 = game['goals2']
+        gameID = game.id
+        goals1 = game.goals1
+        goals2 = game.goals2
 
         # First, get result of the match and update the Games table
         query = update(games_table)\

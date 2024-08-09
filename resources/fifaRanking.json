@@ -1,98 +1,26 @@
-{
-    "1": {
-        "name": "France",
-        "group": "D"
-    },
-    "2": {
-        "name": "Belgium",
-        "group": "E"
-    },
-    "3": {
-        "name": "England",
-        "group": "C"
-    },
-    "4": {
-        "name": "Portugal",
-        "group": "F"
-    },
-    "5": {
-        "name": "Netherlands",
-        "group": "D"
-    },
-    "6": {
-        "name": "Spain",
-        "group": "B"
-    },
-    "7": {
-        "name": "Italy",
-        "group": "B"
-    },
-    "8": {
-        "name": "Croatia",
-        "group": "B"
-    },
-    "9": {
-        "name": "Germany",
-        "group": "A"
-    },
-    "10": {
-        "name": "Switzerland",
-        "group": "A"
-    },
-    "11": {
-        "name": "Denmark",
-        "group": "C"
-    },
-    "12": {
-        "name": "Ukraine",
-        "group": "E"
-    },
-    "13": {
-        "name": "Austria",
-        "group": "D"
-    },
-    "14": {
-        "name": "Hungary",
-        "group": "A"
-    },
-    "15": {
-        "name": "Poland",
-        "group": "D"
-    },
-    "16": {
-        "name": "Serbia",
-        "group": "C"
-    },
-    "17": {
-        "name": "Czechia",
-        "group": "F"
-    },
-    "18": {
-        "name": "Scotland",
-        "group": "A"
-    },
-    "19": {
-        "name": "Turkey",
-        "group": "F"
-    },
-    "20": {
-        "name": "Romania",
-        "group": "E"
-    },
-    "21": {
-        "name": "Slovakia",
-        "group": "E"
-    },
-    "22": {
-        "name": "Slovenia",
-        "group": "C"
-    },
-    "23": {
-        "name": "Albania",
-        "group": "B"
-    },
-    "24": {
-        "name": "Georgia",
-        "group": "F"
-    }
-}
+[
+    {"id": 2, "name": "France", "group": "D"},
+    {"id": 3, "name": "Belgium", "group": "E"},
+    {"id": 4, "name": "England", "group": "C"},
+    {"id": 6, "name": "Portugal", "group": "F"},
+    {"id": 7, "name": "Netherlands", "group": "D"},
+    {"id": 8, "name": "Spain", "group": "B"},
+    {"id": 9, "name": "Italy", "group": "B"},
+    {"id": 10, "name": "Croatia", "group": "B"},
+    {"id": 16, "name": "Germany", "group": "A"},
+    {"id": 19, "name": "Switzerland", "group": "A"},
+    {"id": 21, "name": "Denmark", "group": "C"},
+    {"id": 22, "name": "Ukraine", "group": "E"},
+    {"id": 25, "name": "Austria", "group": "D"},
+    {"id": 26, "name": "Hungary", "group": "A"},
+    {"id": 28, "name": "Poland", "group": "D"},
+    {"id": 33, "name": "Serbia", "group": "C"},
+    {"id": 36, "name": "Czechia", "group": "F"},
+    {"id": 39, "name": "Scotland", "group": "A"},
+    {"id": 40, "name": "Turkey", "group": "F"},
+    {"id": 46, "name": "Romania", "group": "E"},
+    {"id": 48, "name": "Slovakia", "group": "E"},
+    {"id": 57, "name": "Slovenia", "group": "C"},
+    {"id": 66, "name": "Albania", "group": "B"},
+    {"id": 75, "name": "Georgia", "group": "F"}
+]
